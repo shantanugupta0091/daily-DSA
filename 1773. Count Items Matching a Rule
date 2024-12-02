@@ -1,0 +1,21 @@
+#leetcode
+
+
+
+class Solution {
+public:
+    int countMatches(vector<vector<string>>& items, string ruleKey, string ruleValue) {
+        
+        int c=0 , rk=-1 ;
+        int n = items.size();
+
+        if(ruleKey=="type") rk=0;
+        if(ruleKey=="color") rk=1;
+        if(ruleKey=="name") rk=2;
+
+        for(int i = 0 ; i<n ; i++)
+            if( items[i][rk]==ruleValue ) c++;
+        return c;
+
+    }
+};
