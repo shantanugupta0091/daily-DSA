@@ -1,0 +1,19 @@
+#leetcode
+
+
+class Solution {
+public:
+    vector<int> constructRectangle(int area) {
+        int r= sqrt(area);
+        vector<int>arr(2);
+        for(int i=r ; i>=1 ; i-- ){
+            if(area%i==0 && ((area/i)*i==area)){
+                arr={area/i,i};
+                return arr;
+            }
+        }
+        return {};
+
+
+    }
+};
