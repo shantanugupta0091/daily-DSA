@@ -1,0 +1,63 @@
+#leetcode
+
+
+1. solution
+
+class Solution {
+public:
+    int finalPositionOfSnake(int n, vector<string>& commands) {
+
+       
+        int a=0 ;
+        int  m = commands.size();
+        for(int i=0 ; i<m ; i++){
+            if(commands[i]=="RIGHT" ) a+=1;
+             
+            if(commands[i]=="DOWN"  )  a+=n;
+            
+            if(commands[i]=="UP"   )  a-=n;        
+            
+            if(commands[i]=="LEFT"  ) a-=1;
+             
+        }
+        return  a;
+
+
+
+    }
+};
+
+
+
+2. solution
+
+class Solution {
+public:
+    int finalPositionOfSnake(int n, vector<string>& commands) {
+
+        //vector<vector<int>>arr(n,vector<int>(n));
+        int arr[n][n];
+        for(int i=0 ; i<n ; i++){
+            for(int j=0 ; j<n ; j++)
+                arr[i][j] = (i * n) + j;
+                
+        }
+
+        int a=0 , b=0 ;
+        int  m = commands.size();
+        for(int i=0 ; i<m ; i++){
+            if(commands[i]=="RIGHT" && b<(n-1)) b+=1;
+             
+            if(commands[i]=="DOWN" && a<(n-1))  a+=1;
+            
+            if(commands[i]=="UP" && a>0 )  a-=1;        
+            
+            if(commands[i]=="LEFT" && b>0 ) b-=1;
+             
+        }
+        return arr[a][b];
+
+
+
+    }
+};
