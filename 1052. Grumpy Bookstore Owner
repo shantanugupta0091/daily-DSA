@@ -1,0 +1,61 @@
+#leetcode
+
+
+
+class Solution {
+public:
+    int maxSatisfied(vector<int>& customers, vector<int>& grumpy, int minutes) {
+
+                
+        int k = minutes;
+        vector<int> &arr = customers;
+        int n = arr.size();
+
+        int prevsum = 0;
+
+        for(int i=0 ; i<k ; i++)
+
+                if(grumpy[i]==1) prevsum += arr[i];
+
+        int i = 1;
+        int j = k;
+        int idx = 0;
+        int maxsum = prevsum;
+        
+        while(j<n){
+
+            int currsum;
+            if(k>1){
+            currsum =   prevsum + (arr[j]*grumpy[j]) - (arr[i-1]*grumpy[i-1]) ;
+            }
+
+            else currsum = (arr[j]*grumpy[j]) ;
+
+            if(currsum>maxsum){
+
+                    idx = i;
+                    maxsum=currsum;
+            }
+
+           
+            if(k>1) prevsum = currsum;
+            i++;
+            j++;
+        }
+
+        for(int c=idx ; c<=(idx+k-1) ; c++){
+
+            grumpy[c]=0;
+        }
+        
+        int fsum=0;
+        for(int i=0 ; i<n ; i++){
+
+            if(grumpy[i]==0){
+                 fsum += arr[i];
+            }
+        }
+
+        return fsum;
+    }
+};
