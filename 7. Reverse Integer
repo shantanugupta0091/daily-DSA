@@ -1,0 +1,52 @@
+#leetcode
+
+1. solution :--
+
+class Solution {
+public:
+    int reverse(int x) {
+        long long rev=0;
+        int a=-1;
+        
+        while(x!=0){
+            
+                
+            rev = rev * 10 + x%10;
+            if(rev<-2147483648 || rev>2147483647) return 0;
+            // a=;
+            // rev= rev + a;
+            x = x/10;   
+        }
+        return (int)rev;
+    }
+};
+
+
+
+
+2. solution :--
+
+class Solution {
+public:
+    int reverse(int x) {
+        long long rev=0;
+        int a=-1;
+         
+        while(x!=0){
+            if(rev*10<-2147483648 || rev*10>2147483647) return 0;
+            rev = rev * 10;
+
+            a=x%10;
+            rev= rev + a;
+            x = x/10;
+            
+
+        }
+         
+        return rev;
+        
+    }
+};
+
+
+
