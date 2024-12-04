@@ -1,0 +1,36 @@
+#leetcode
+
+
+
+class Solution {
+public:
+
+    int reverseno(int elmt){
+        int reve = 0;
+        while(elmt>0){
+            reve = reve*10 + elmt%10;
+            elmt = elmt/10;
+
+        }
+        return reve;
+    }
+
+
+
+    int countDistinctIntegers(vector<int>& nums) {
+        
+        unordered_set<int> s;
+        int n = nums.size();
+
+        for(int i=0 ; i<n ; i++){
+            s.insert(nums[i]);
+        }
+
+        for(int i=0 ; i<n ; i++){
+            int rev = reverseno(nums[i]);
+            s.insert(rev);
+        }
+
+        return s.size();
+    }
+};
