@@ -1,0 +1,30 @@
+#gfg
+
+
+
+int findDiff(vector<int>& arr) {
+        unordered_map<int,int>res;
+        
+        for(int i = 0 ; i< arr.size() ; i++){
+            if(res.find(arr[i])!=res.end()) 
+                res[arr[i]] += 1; 
+            
+            else{
+                
+                res[arr[i]] = 1; 
+                
+            }
+        }
+        int maxfreq = -1;
+        //int lessfreq = INT_MAX;
+        int lessfreq = arr.size()+1;
+        
+        for(auto x : res){
+            if(x.second>=maxfreq) maxfreq = x.second;
+            if(x.second<=lessfreq) lessfreq = x.second;
+            
+        }
+        
+        return maxfreq-lessfreq;
+        
+    }
