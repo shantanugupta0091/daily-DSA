@@ -1,0 +1,24 @@
+#leetcode
+
+
+
+void moveZeroes(vector<int>& nums) {
+        int i = -1;
+        int j = -1;
+        int n = nums.size();
+
+        for(int a=0; a<n; a++){
+            if(nums[a]==0){
+                i=a;
+                break;
+            }          
+        }
+        if(i!=-1){
+        for(j=i+1; j<n; j++){
+            if(nums[j]!=0){
+                swap(nums[i],nums[j]);
+                i++;
+            } 
+        }
+        }  
+    }
