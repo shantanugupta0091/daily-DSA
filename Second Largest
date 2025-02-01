@@ -1,0 +1,28 @@
+#gfg
+
+
+
+ int getSecondLargest(vector<int> &arr) {
+        
+        int maxi = -1;
+        int secmax = -1;
+        int n = arr.size();
+        
+        for(int i=0 ; i<n ; i++ ){
+            
+            if(arr[i]>maxi){
+                secmax = maxi;
+                maxi=arr[i];
+            }    
+            else if(arr[i]<maxi && arr[i]>secmax)
+                secmax=arr[i];
+            
+        }
+        
+        return secmax;
+        
+        
+        
+        
+        
+    }
