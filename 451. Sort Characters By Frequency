@@ -1,0 +1,31 @@
+#leetcode
+
+
+
+string frequencySort(string s) {
+        int n = s.size();
+        vector<pair<char,int>>v(123);
+        int m = v.size();
+        for(int i=0 ; i<n ; i++){
+            int freq = v[s[i]].second;
+            v[s[i]]= {s[i],freq+1};
+        }
+
+        auto comp = [&](pair<char,int> &p1, pair<char,int> &p2){
+            return p1.second > p2.second;
+        };
+
+        sort(v.begin() , v.end(), comp); //i use comp bcz each elemt of vect contains pair not a single elmt , so in pair we cant decide on which basis we need to sort
+
+        string ans = "";
+         for(int i=0 ; i<m ; i++){
+            
+            int freq = v[i].second;
+            char ch = v[i].first;
+            if(freq>0){
+                ans += string(freq,ch);
+            } 
+        }
+
+        return ans;
+    }
