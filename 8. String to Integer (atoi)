@@ -1,0 +1,85 @@
+#leetcode
+
+rula diya iss q ne
+
+
+
+class Solution {
+public:
+    int myAtoi(string s) {
+
+        int n = s.size();
+        long long ans=0;
+        bool flag=false; //check for -ve
+        bool flag2=false; //check any elmt added or not
+        bool flag3=false; //any nondigit sign occur
+
+        for(int i=0; i<n; i++){
+
+            if(s[i]=='1' || s[i]=='2' ||s[i]=='3' ||s[i]=='4' ||s[i]=='5' ||s[i]=='6' ||s[i]=='7' ||s[i]=='8' || s[i]=='9' ){
+
+                if (ans > (LLONG_MAX - (s[i] - '0')) / 10) {
+                    // If overflow happens, return clamped INT values
+                    return flag ? INT_MIN : INT_MAX;
+                }
+                ans = ans*10 + (s[i] - '0');
+                flag2=true;
+                
+            }
+
+            else if(s[i]=='-' && ans==0 && flag2==false && flag3==false ){
+                flag=true;
+                flag3=true;
+            }
+            else if(s[i]=='+' && ans==0 && flag2==false && flag3==false ){
+                flag3=true;
+                continue;
+
+            }
+            else if(s[i]=='+' && ans==0 && flag2==false && flag3==true ){
+                return 0;
+
+            }
+            else if(s[i]=='-' && ans==0 && flag2==false && flag3==true ){
+                return 0;
+
+            }
+
+            else if(s[i]==' ' && ans==0 && (flag2==true || flag3)){
+                break;
+            }
+
+            else if(s[i]==' ' && ans==0 )
+                continue;
+
+            
+
+
+            else if(s[i]==' ' && ans>0)
+                break;
+
+            else if(s[i]=='0' && ans==0){
+                flag2=true;
+                continue;
+            }
+            else if(s[i]=='0' && ans>0){ 
+                if (ans > (LLONG_MAX - 0) / 10) {
+                    // If overflow happens, return clamped INT values
+                    return flag ? INT_MIN : INT_MAX;
+                }
+                ans = ans*10;
+                flag2=true;
+            }
+            else break;               
+
+        }
+        if(flag==true){
+            ans= ans*(-1);
+            
+            
+        }
+        if (ans > INT_MAX) return INT_MAX;
+        if (ans < INT_MIN) return INT_MIN;     
+        return ans;
+    }
+};
