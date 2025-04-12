@@ -1,0 +1,25 @@
+#leetcode
+
+
+
+
+int romanToInt(string s) {
+        unordered_map<char, int>roman={
+            {'I',1},{'V',5},{'X',10},{'L',50},{'C',100},{'D',500},{'M',1000}
+            };
+        int n= s.size();
+        int ans=0;
+
+        for(int i=0; i<n-1; i++){
+            char key1 =s[i];
+            char key2 =s[i+1];
+            int val1 = roman[key1];
+            int val2 = roman[key2];
+
+            if(val1<val2) ans -= val1;
+            else ans += val1;
+
+        }
+        ans += roman[s[n-1]];
+        return ans;
+    }
