@@ -1,0 +1,35 @@
+#leetcode
+
+
+
+int numberOfSubstrings(string s) {
+        int n= s.size();
+        vector<int>freq(3,0);
+        int i=0;
+        int j=0;
+        int uniq=0; //to check any uniq elmt present or not in curr window
+        int count=0;
+
+        while(j<n){
+
+            char ch = s[j];
+            freq[ch-'a']++;
+            if(freq[ch-'a']==1){
+
+                uniq++;
+            } 
+            while(uniq==3){
+
+                count += n-j;
+                char ch = s[i];
+                freq[ch-'a']--;
+                if(freq[ch-'a']==0)
+                    uniq--;
+                i++;
+            }
+            j++;
+
+        }
+        return count;
+
+    }
