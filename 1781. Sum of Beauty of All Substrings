@@ -1,0 +1,36 @@
+#leetcode
+
+
+
+int beautySum(string s) {
+        int n= s.size();
+        int count=0;
+        unordered_map<char,int>mp;
+
+        for(int i=0; i<n; i++){
+            unordered_map<char,int>mp;
+            for(int j=i; j<n; j++){
+                
+                char ch= s[j];
+                mp[ch]++;
+
+                char maxChar, minChar;
+                int maxVal = INT_MIN;
+                int minVal = INT_MAX;
+                for (auto it : mp) {
+                    if (it.second > maxVal) {
+                        maxVal = it.second;
+                        maxChar = it.first;
+                    }
+                    if (it.second < minVal) {
+                        minVal = it.second;
+                        minChar = it.first;
+                    }
+                }
+
+                count += maxVal-minVal ; 
+            }
+
+        }
+        return count;
+    }
