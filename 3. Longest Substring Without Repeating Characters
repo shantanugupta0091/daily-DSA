@@ -1,0 +1,39 @@
+#leetcode
+
+
+
+
+int lengthOfLongestSubstring(string s) {
+        int n= s.size();
+        unordered_map<char,int>hm;
+        int maxlen=0;
+        int i=0;
+        int j=0;
+        //int maxi=0;
+        if(n==1) return 1;
+        //*bool flag=false; //remain false if no duplic present
+
+        while(j<n){
+            char ch = s[j];
+            if(hm.count(ch)==0){ //elmt not present
+                hm[ch]++;
+                maxlen = max(maxlen,j-i+1);
+                j++;
+                //*maxi++;
+                
+            }
+            else{
+                //*flag=true;
+                //*maxlen = max(maxlen,j-i);
+                while(hm.count(ch)==1){ //already present
+                    hm.erase(s[i]);
+                    i++;
+                    //*maxi--;
+                }
+            }
+        }
+        //*if(flag==false) return n;
+        //*return max(maxlen,maxi);
+        return maxlen;
+
+    }
