@@ -1,0 +1,41 @@
+#leetcode
+
+
+
+
+int longestOnes(vector<int>& nums, int k) {
+        int currmax=0;
+        int maxlen=0;
+        int zeroflip=0;
+        int i=0;
+        int j=0;
+        int n= nums.size();
+
+        while(j<n){
+            if(nums[j]==1){
+                currmax++;
+                j++;
+                maxlen = max(maxlen,currmax);
+            }
+            else{
+                if(zeroflip<k){
+                    currmax++;
+                    zeroflip++;
+                    j++;
+                    maxlen = max(maxlen,currmax);
+
+                }
+                else{
+                    while(nums[i]==1){
+                        i++;
+                        currmax--;
+
+                    }
+                    i++;
+                    zeroflip--;
+                    currmax--;
+                }
+            }
+        }
+        return maxlen;
+    }
