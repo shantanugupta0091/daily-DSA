@@ -1,0 +1,38 @@
+#leetcode
+
+
+
+
+
+int totalFruit(vector<int>& fruits) {
+        int n= fruits.size();
+        
+
+        unordered_map<int , int>hm;
+
+       
+
+        int i=0;
+        int j=0;
+        int c=0;
+        int maxc=0;
+        while(j<n){
+            if(hm.find(fruits[j])!=hm.end()  || hm.size()<2){
+                hm[fruits[j]]++;
+                j++;
+                c++;
+                maxc = max(maxc,c);
+            }
+            else{
+                while(hm.size()>=2){
+                    hm[fruits[i]]--;
+                    c--;
+                    if(hm[fruits[i]]==0) hm.erase(fruits[i]);
+                    i++;
+
+                }
+            }
+        }
+        return maxc;
+
+    }
