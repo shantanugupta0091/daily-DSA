@@ -1,0 +1,29 @@
+#leetcode
+
+
+
+int numberOfSubarrays(vector<int>& nums, int k) {
+        int n= nums.size();
+       
+        int c=0;
+        int sum=0;
+        int remain;
+        unordered_map<int , int> hm;
+        hm[0]=1;
+
+        for(int i=0; i<n; i++){
+
+            sum += nums[i]%2; //if num is odd-->1 even-->0
+
+            remain = sum - k;
+
+            if(hm.find(remain)!=hm.end()){
+                c += hm[remain];
+
+            }
+            hm[sum]++;
+
+        }
+        return c;
+
+    }
