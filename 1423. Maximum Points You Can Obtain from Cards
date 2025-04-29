@@ -1,0 +1,40 @@
+#leetcode
+
+
+
+int maxScore(vector<int>& cardPoints, int k) {
+        int n = cardPoints.size();
+        int fsum=0;
+        for(int i=0; i<n; i++)
+            fsum += cardPoints[i];
+        
+        if(k==n)
+            return fsum;
+
+
+        
+        int i=0; 
+        int j=0;
+        int tsum=0;
+        int c=0;
+        int maxi =-1;
+
+        while(j<n){
+            if(c<(n-k)){
+                tsum += cardPoints[j];
+                j++;
+                c++;
+            }
+            else if(c==(n-k)){
+                maxi = max(maxi , fsum-tsum);
+                tsum +=  cardPoints[j] - cardPoints[i];
+                
+                i++;
+                j++;
+            }
+        }
+        maxi = max(maxi , fsum-tsum);
+        return maxi;
+
+
+    }
