@@ -1,0 +1,29 @@
+#leetcode
+
+
+
+
+ListNode* detectCycle(ListNode* head) {
+
+        if (head == NULL || head->next == NULL)
+            return NULL;
+        ListNode* fast = head;
+        ListNode* slow = head;
+
+        while (fast != NULL && fast->next != NULL) {
+            fast = fast->next->next;
+            slow = slow->next;
+            if (fast == slow)
+                break;
+        }
+        if (fast != slow)
+            return NULL;
+
+        ListNode* temp = head;
+
+        while (temp != slow) {
+            slow = slow->next;
+            temp = temp->next;
+        }
+        return slow;
+    }
