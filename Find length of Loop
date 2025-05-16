@@ -1,0 +1,25 @@
+#gfg
+
+
+
+int countNodesinLoop(Node *head) {
+        
+        Node* fast = head ;
+        Node* slow = head ;
+
+        while(fast != NULL && fast->next != NULL){
+            fast = fast -> next -> next ;
+            slow = slow -> next ;
+            if(fast == slow){
+                int n=1;
+                slow = slow -> next ;
+                while(slow!=fast){
+                    slow = slow -> next ;
+                    n++;
+                }
+                return n;
+            }
+        }
+        return 0;
+        
+    }
