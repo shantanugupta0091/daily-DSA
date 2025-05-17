@@ -1,0 +1,32 @@
+#leetcode
+
+
+
+ListNode* removeNthFromEnd(ListNode* head, int n) {
+        if (head == NULL || head->next == NULL)
+            return NULL;
+
+        ListNode* fast = head;
+        ListNode* slow = head;
+        int gap = 0;
+
+        while (gap < n) {
+            fast = fast->next;
+            gap++;
+        }
+
+        if (fast == NULL) {
+            head = head->next;
+            return head;
+        }
+        while (fast != NULL && fast->next != NULL) {
+            fast = fast->next;
+            slow = slow->next;
+        }
+        // if(n==1){
+        //     slow->next = NULL;
+        //     return head;
+        // }
+        slow->next = slow->next->next;
+        return head;
+    }
