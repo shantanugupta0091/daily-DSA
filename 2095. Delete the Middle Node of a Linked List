@@ -1,0 +1,26 @@
+#leetcode
+
+
+
+
+ListNode* deleteMiddle(ListNode* head) {
+
+        if (head == NULL || head->next == NULL )
+            return NULL;
+
+        // if ( head->next == NULL)
+        //     return head;    
+
+        ListNode* fast = head;
+        ListNode* slow = head;
+        ListNode* temp = slow ;
+
+        while (fast != NULL && fast->next != NULL) {
+            fast = fast->next->next;
+            temp = slow ;
+            slow = slow->next;
+        }
+        temp -> next = temp -> next -> next ;
+        return head;
+
+    }
