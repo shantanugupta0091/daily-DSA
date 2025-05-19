@@ -1,0 +1,80 @@
+#gfg
+
+
+
+ Node* findmiddle(Node* temp){
+        Node* fast = temp ;
+        Node* slow = temp ;
+        Node* prev = NULL;
+
+        while(fast != NULL && fast -> next != NULL ){
+            
+            fast = fast -> next -> next ;
+            prev = slow ;
+            slow = slow -> next ;
+
+
+        }
+        if (prev != NULL)
+            prev->next = NULL;
+
+        return slow;
+    }
+
+     Node* mergeLL(Node* lefthead , Node* righthead){
+
+        if (lefthead == NULL) return righthead;
+        if (righthead == NULL) return lefthead;
+
+        Node* temp  ;
+        if(lefthead -> data <= righthead -> data){
+            temp = lefthead ;
+            lefthead = lefthead -> next ;
+        }
+        else{
+            temp = righthead ;
+            righthead = righthead -> next ;
+        }
+
+        Node* perma = temp ;
+
+        while(righthead != NULL && lefthead != NULL ){
+            if(lefthead -> data < righthead -> data){
+                temp -> next  = lefthead ;
+                lefthead = lefthead -> next ;
+            }
+            else{
+                temp -> next  = righthead ;
+                righthead = righthead -> next ;
+            }
+            temp = temp -> next ;
+        }
+        if (lefthead != NULL) temp->next = lefthead;
+        else temp->next = righthead;
+
+        return perma ;
+
+    }
+
+  
+  
+  
+    Node* segregate(Node* head) {
+        
+        if( head == NULL || head -> next == NULL ){
+            return head;
+        }
+
+        Node* middle = findmiddle(head);
+        Node* lefthead = head;
+        Node* righthead = middle ;
+        //middle -> next = NULL ;
+
+        lefthead = segregate( lefthead ) ;
+        righthead = segregate( righthead ) ;
+
+        Node* finalLL = mergeLL( lefthead , righthead ) ;
+        return finalLL ;
+        
+        
+    }
