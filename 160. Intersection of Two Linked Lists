@@ -1,0 +1,55 @@
+#leetcode
+
+
+
+ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        if(headA==NULL|| headB==NULL) return NULL;
+        ListNode* temp1 = headA ;
+        ListNode* temp2 = headB ;
+        int count1 = 0 ;
+        int count2 = 0 ;
+
+        while( temp1 != NULL || temp2 != NULL){
+            if(temp1 != NULL ){
+                temp1 = temp1 -> next ;
+                count1++;
+            }
+            if(temp2 != NULL ){
+                temp2 = temp2 -> next ;
+                count2++;
+            }
+        }                   
+
+        temp1 = headA ;
+        temp2 = headB ;    
+
+        bool flag =false ;
+        int diff = count2 - count1 ;
+        if(count1 > count2){
+            diff = count1 - count2 ;
+            flag= true ;
+        } 
+            
+        if(flag==true){
+            while(diff != 0){
+                diff--;
+                temp1 = temp1 -> next ;
+            }
+        }
+
+        else{
+            while(diff != 0){
+                diff--;
+                temp2 = temp2 -> next ;
+            }
+        }
+
+        while( temp1 != NULL && temp2 != NULL){
+            if(temp1 == temp2) return temp1;
+            temp1 = temp1 -> next ;
+            temp2 = temp2 -> next ;
+        }
+        return NULL;
+
+        
+    }
