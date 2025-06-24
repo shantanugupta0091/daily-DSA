@@ -1,0 +1,40 @@
+#gfg
+
+
+
+
+void deleteAllOccurOfX(struct Node** head_ref, int x) {
+        // Write your code here
+        
+         Node* temp = *head_ref ;
+        // Node* after = before-> next;
+        Node* before = NULL ;
+        Node* after = NULL ;
+        
+        if(temp == NULL) return;
+        while(temp != NULL){
+            
+            if(temp -> data == x){
+                if(temp == *head_ref){
+                    temp = temp -> next ;
+                    *head_ref = temp ;
+                    temp -> prev = NULL ;
+                }
+                else{
+                    before = temp -> prev ;
+                    after = temp -> next ;
+                    if(before != NULL) before -> next = after ;
+                    if(after != NULL) after -> prev = before ;
+                    delete temp;
+                    temp= after ;
+                   // temp = temp -> next ;
+                }
+                
+            }
+            else{
+                temp = temp -> next ;
+            }
+            
+            
+        }
+    }
