@@ -1,0 +1,87 @@
+#leetcode
+
+
+
+ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        
+
+        ListNode* temphead1 = l1;
+        ListNode* temphead2 = l2;
+
+        int carry = 0;
+        ListNode* head2 = new ListNode();
+        head2->val = temphead1->val + temphead2->val;
+        if (head2->val > 9) {
+            carry = 1;
+            head2->val = (head2->val) % 10;
+        }
+
+        temphead1 = temphead1->next;
+        temphead2 = temphead2->next;
+
+        ListNode* th2 = head2;
+
+        while (temphead1 != NULL && temphead2 != NULL) {
+            ListNode* temp = new ListNode();
+            int sum = temphead1->val + temphead2->val + carry;
+
+            if (sum > 9) {
+                carry = 1;
+                temp->val = (sum) % 10;
+            } else {
+                carry = 0;
+                temp->val = sum;
+            }
+
+            th2->next = temp;
+            th2 = th2->next;
+
+            temphead1 = temphead1->next;
+            temphead2 = temphead2->next;
+        }
+        if (temphead1 == NULL) { // in case when 1st node ends early
+
+            while (temphead2 != NULL) {
+                ListNode* temp = new ListNode();
+                int sum = temphead2->val + carry;
+
+                if (sum > 9) {
+                    carry = 1;
+                    temp->val = (sum) % 10;
+                } else {
+                    carry = 0;
+                    temp->val = sum;
+                }
+
+                th2->next = temp;
+                th2 = th2->next;
+
+                temphead2 = temphead2->next;
+            }
+        } else {
+            while (temphead1 != NULL) {
+
+                ListNode* temp = new ListNode();
+                int sum = temphead1->val + carry;
+
+                if (sum > 9) {
+                    carry = 1;
+                    temp->val = (sum) % 10;
+                } else {
+                    carry = 0;
+                    temp->val = sum;
+                }
+
+                th2->next = temp;
+                th2 = th2->next;
+
+                temphead1 = temphead1->next;
+            }
+        }
+        if(carry == 1){
+            ListNode* temp = new ListNode();
+            temp->val = 1 ;
+            th2->next = temp;
+        }
+        return head2;
+    }
