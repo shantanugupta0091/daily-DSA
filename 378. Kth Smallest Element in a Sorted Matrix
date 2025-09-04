@@ -1,0 +1,17 @@
+#leetcode
+
+
+
+int kthSmallest(vector<vector<int>>& arr, int k) {
+        priority_queue<int> pq ;
+        int r = arr.size();
+        int c = arr[0].size();  
+
+        for(int i=0; i<r; i++){
+            for(int j=0; j<c; j++){
+                pq.push(arr[i][j]);
+                if(pq.size()>k) pq.pop();
+            }    
+        }
+        return pq.top();
+    }
