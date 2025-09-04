@@ -1,0 +1,31 @@
+#gfg
+
+
+
+vector<int> minMaxCandy(vector<int>& prices, int k) {
+        sort(begin(prices), end(prices));
+        int n = prices.size();
+        int i=0; 
+        int j=n-1;
+        vector<int> ans;
+        int mincost =0;
+        
+        while(i<=j){
+            mincost += prices[i];
+            i++;
+            j-=k;
+        }
+        ans.push_back(mincost);
+        
+        
+        i=0;
+        j=n-1;
+        int maxcost =0;
+        while(i<=j){
+            maxcost += prices[j];
+            i+=k;
+            j--;
+        }
+        ans.push_back(maxcost);
+        return ans;
+    }
