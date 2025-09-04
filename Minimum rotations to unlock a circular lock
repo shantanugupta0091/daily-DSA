@@ -1,0 +1,15 @@
+#gfg
+
+
+int rotationCount(long long R, long long D) {
+        int ans = 0;
+        while(R){
+            int x = R%10;
+            int y = D%10;
+            
+            ans += min(abs(x-y), 10 - abs(x-y));
+            R/=10;
+            D/=10;
+        }
+        return ans;
+    }
