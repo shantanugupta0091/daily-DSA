@@ -1,0 +1,28 @@
+#leetcode
+
+
+
+int largestSumAfterKNegations(vector<int>& nums, int k) {
+        int n = nums.size();
+
+        priority_queue<int , vector<int>, greater<int>>pq(nums.begin(), nums.end());
+
+        while(k){
+            int elmt = pq.top();
+            if(elmt==0){
+                break;
+            }
+            pq.pop();
+            elmt *= (-1);
+            pq.push(elmt);
+            k--;
+        }
+
+        int sum = 0;
+        while(pq.size()){
+            sum += pq.top();
+            pq.pop();
+        }
+
+        return sum;
+    }
